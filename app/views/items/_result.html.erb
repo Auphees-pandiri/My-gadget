@@ -1,0 +1,30 @@
+<% if params[:action] == 'search' %>
+	<div class="results-block">
+		<%= bootstrap_flash %>
+	</div>
+<% end %>
+<% if @items %>
+  <% if @items.size > 0 %>
+    <div id="friend-lookup-results" class="well results-block col-md-10">
+      <table class="search-results-table col-md-12">
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><strong>Name:</strong> <%= item.name %></td>
+              <td><strong>Price:</strong> <%= item.price %></td>
+              <td><strong>Profile:</strong> 
+                <% if current_user.not_subscribe_with?(item.id) %>
+                  <%= link_to "Subscribe Gadget", user_items_path(user: current_user, item: item.id),:remote => true, :class => 'create_item', class: "btn btn-xs btn-success", method: :post %>
+                <% else %>
+                  <span class="label label-primary">
+                    You have subscribed this gadget
+                  </span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>

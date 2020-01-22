@@ -1,0 +1,108 @@
+<div class="container" align="center">
+	<h2>User Details</h2>
+	<div class="row">
+		<h4>Email:</h4>
+		<p><%= @user.email %></p>
+	</div>
+	<div class="row">
+		<% if @items.size > 0 %>
+		  <table class="table table-striped table-hover table-responsive">
+		    <thead>
+		    	<tr>
+			        <th colspan="3" class="page-header">
+			          <h2> <%= link_to "My Subscribed Gadgets", "#", id:"Subscribed-items" %> </h2>
+			        </th>
+		    	</tr>
+		    </thead>
+		    <tbody id="sub-items">
+		    	<tr>
+			        <th>Name</th>
+			        <th>Price</th>
+			        <% if @user.id == current_user.id %>
+			        	<th>Actions</th>
+			        <% end %>
+		      	</tr>
+		      	<% @items.each do |item| %>
+			        <tr>
+			          <td><%= item.name %></td>
+			          <td><%= item.price %></td>
+			          <% if @user.id == current_user.id %>
+				          <td>
+				            <%= link_to "UnSubscribe gadget", user_item_path(item), method: :delete,
+				              data: { confirm: "Are you sure?" },:remote => true, :class => 'delete_item', class: "btn btn-xs btn-danger" %>
+				          </td>
+			          <% end %>
+			        </tr>
+		      	<% end %>
+		    </tbody>
+		  </table>  
+		<% else %>
+		  <div class="row col-lg-12">
+		    <p class="lead">
+		      User don't have any items yet, He will add some items soon!
+		    </p>
+		  </div>
+		<% end %>
+	</div>
+	<div class="row">
+		<% if @friendships.size > 0 %>
+			<table class="table table-striped table-hover table-responsive">
+			    <thead>
+			    	<tr>
+				        <th colspan="3" class="page-header">
+				         <h2> <%= link_to "My Friends", "#", id:"friend-items" %> </h2>
+				        </th>
+			    	</tr>
+			    </thead>
+			    <tbody id="friend-section">
+			    	<tr>
+				        <th>Email</th>
+				        <% if @user.id == current_user.id %>
+				        	<th>Actions</th>
+				        <% end %>
+			      	</tr>
+			      	<% @friendships.each do |friend| %>
+				        <tr>
+				          <td><%= friend.email %></td>
+				          <% if @user.id == current_user.id %>
+					          <td>
+					            <%= link_to "View Profile", user_path(friend), class: "btn btn-primary btn-xs" %>
+					            <%= link_to "Remove Friend", friendship_path(friend), method: :delete,
+					              data: { confirm: "Are you sure?" },:remote => true, :class => 'delete_item', class: "btn btn-xs btn-danger" %>
+					          </td>
+				          <% end %>
+				        </tr>
+			      	<% end %>
+			    </tbody>
+			</table>  
+		<% else %>
+		  	<div class="row col-lg-12">
+			    <p class="lead">
+			      User don't have any friends yet, He will add some friends soon!
+			    </p>
+		  	</div>
+		<% end %>
+	</div>
+	<footer class="main-footer">
+        <div class="container">
+            <div class="row">
+	            <div class="col-md-6">
+	              <h3>About My Gadget</h3>
+	              <p>Our Gadgets are the top and most trusted ones across the globe.Our Gadgets are cost efficient and available at a reasonable price.Our Gadgets already have very good fame in the market.We also provide branded gadgets.</p>
+	              <p>Copyright &copy; 2019</p>
+	            </div>
+	            <div class="col-md-6">
+	            	<br><br>
+	                <ul class="list-unstyled">
+	                  <li><%= link_to "My Gadgets", my_portfolio_path %></li>
+	                  <li><%= link_to "My Friends", my_friends_path %></li>
+	                  <li><%= link_to "My Profile", user_path(current_user) %></li>
+	                </ul>
+	            </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+

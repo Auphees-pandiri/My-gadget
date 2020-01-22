@@ -1,0 +1,62 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+.logout {
+padding-left: 0;
+}
+
+.user-name {
+padding-top: 15px;
+}
+
+.nav.navbar-right li {
+.btn {
+color: #fff !important;
+margin-top: 5%;
+}
+.btn-success:hover {
+background-color: #5cb85c  !important;
+}
+}
+
+.results-block {
+display: inline-block;
+}
+
+.no-padding {
+padding: 0 !important;
+}
+h2{
+	color:green;
+}
+.navbar-brand{
+	font-size:30px;
+	color:#30a68a !important;
+}
+#sub-items{
+  display:none;
+}
+#friend-section{
+  display:none;
+}
+.jumbotron{
+	width:100%;
+}
+.well{
+	background-color:#1aa381;
+}
+footer{
+	background-color:#7c8c22;
+}
